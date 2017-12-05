@@ -6,7 +6,9 @@ function [neuronInput, neuronResult] = getNeuronInput(inputSet)
     %   differencing), and columns = the number of input neurons.
     %   in our instance it is 4, we will have 3 pieces of input
     %   data from our raw data and our bias which will be 1
-    neuronInput = zeros(size(inputSet,2)-LDIFF,4);
+    %Removing Bias - below is with bias
+    %neuronInput = zeros(size(inputSet,2)-LDIFF,4);
+    neuronInput = zeros(size(inputSet,2)-LDIFF,3);
 
     %   neuronResult establishes the actual output that we are
     %   trying to achieve through the neuron input
@@ -30,7 +32,8 @@ function [neuronInput, neuronResult] = getNeuronInput(inputSet)
 
         %   Neuron 4
         %   Bias = 1
-        neuronInput(inputRow,4) = 1;
+        %BIAS REMOVED
+        %neuronInput(inputRow,4) = 1;
 
         %   Neuron Result
         %   This is the actual result we are looking for in our
