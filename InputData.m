@@ -23,8 +23,10 @@ classdef InputData
             obj.Max = max;
             [obj.NeuronInput, obj.NeuronResult] = getNeuronInput();
         end
-        
-        function [neuronInput, neuronResult] = getNeuronInput()
+    end
+    
+    methods(Static)
+       function [neuronInput, neuronResult] = getNeuronInput()
             LDIFF = 13;
             
             %   neuronInput establishes a matrix with rows = the size of
@@ -63,7 +65,7 @@ classdef InputData
                 %   data. This will be used to test accuracy
                 neuronResult(inputRow,1) = obj.Input_Set(1, i);
             end
-        end
+        end 
     end
 end
 
