@@ -29,12 +29,22 @@ classdef Brain
             %   each layer has a bias, and the bias's do not receive input
             %   from the previous layer
             obj.InputHiddenWeights = rand(size(obj.NeuralInput,2),2);
-            obj.HiddenSum = obj.NeuralInput * obj.InputHiddenWeights;
+            obj.HiddenSum = obj.NeuralInput*obj.InputHiddenWeights;
             obj.HiddenActivation = arrayfun(@(x) Sigmoid(x),obj.HiddenSum);
-            obj.HiddenActivation = [obj.HiddenActivation ones(size(obj.HiddenActivation,1),1)];
+            obj.HiddenActivation = [obj.HiddenActivation; ones(size(obj.HiddenActivation,1),1)];
             obj.HiddenOutputWeights = rand(size(obj.HiddenActivation, 2), 1);
-            obj.OutputSum = obj.HiddenActivation * obj.HiddenOutputWeights;
-            obj.OutputActivation = arrayfun(@(x) Sigmoid(x),obj.OutputSum);
+            obj.OutputSum = obj.HiddenActivation*obj.HiddenOutputWeights;
+        end
+    end
+    
+    methods(Static)
+        function forwardPropagation()
+            %forwardPropagation through the Neural Network.
+            %   This particular Neural Network is setup as a 4-3-1 Neural
+            %   Network.
+            
+            ts = obj.TrainSet.NeuronInput;
+            ihw = obj.InputHiddenWeights
         end
     end
 end
