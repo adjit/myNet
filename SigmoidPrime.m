@@ -1,3 +1,4 @@
 function y_prime = SigmoidPrime(x)
-    y_prime = Sigmoid(x)*(1-Sigmoid(x));
+    sX = Sigmoid(x);
+    y_prime = sX*(1-sX);
 end

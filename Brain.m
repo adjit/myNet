@@ -4,8 +4,15 @@ classdef Brain
     
     properties
         TrainSet
+        ValidationSet
+        TestingSet
+        
+        NeuralNetwork
+        NetworkLayers
+        
         NeuralInput
         NeuralResults
+        
         InputHiddenWeights
         HiddenSum
         HiddenActivation
@@ -21,6 +28,10 @@ classdef Brain
             %BRAIN Construct an instance of this class
             %   Detailed explanation goes here
             obj.TrainSet = trainingInputData;
+            
+            %   Sets NetworkLayers to the correct number of layers. In the
+            %   base case, it is set to 3 Layer. Input, Hidden, Output
+            obj.NetworkLayers = 3;
             
             %Checks if bias flag is set to TRUE
             if bias == "true"
@@ -51,6 +62,23 @@ classdef Brain
             obj.OutputActivation = arrayfun(@(x) Sigmoid(x),obj.OutputSum);
             obj.DeNormalizedOutput = DeNormalize(obj.OutputActivation, obj.TrainSet.Min, obj.TrainSet.Max);
             obj.DeNormalizedActual = DeNormalize(obj.NeuralResults, obj.TrainSet.Min, obj.TrainSet.Max);
+        end
+        
+        function obj = SetNetwork(obj)
+            obj.NeuralNetwork = NeuralNet(3);
+            obj.NeuralNetwork.InputLayer.Input = obj.TrainSet.NeuronInput;
+            
+            obj.NeuralNetwork.NeuralLayers = NeuralLayer(obj.NeuralNetwork.InputLayer.Input * obj.NeuralNetwork.InputLayer.OutputWeights, 2);
+            obj.NeuralNetwork.NeuralLayers(1,1).Activated = obj.NeuralNetwork.NeuralLayers(1,1).Activate();
+            for i=3:obj.NeuralNetwork.LayerCount
+                obj.NeuralNetwork.NeuralLayers = [obj.NeuralNetwork.NeuralLayers 
+                    NeuralLayer(obj.NeuralNetwork.NeuralLayers(1,i-1).Activated * obj.NeuralNetwork.NeuralLayers(1,i-1).OutputWeights, size(obj.NeuralNetwork.NeuralLayers(1,i-1).OutputWeights,1))];
+            end
+            
+        end
+        
+        function obj = ForwardPropagation(obj)
+            
         end
     end
 end
