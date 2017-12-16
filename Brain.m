@@ -85,7 +85,7 @@ classdef Brain
                 obj.NeuralNetwork.NeuralLayers(1,i).Activated = obj.NeuralNetwork.NeuralLayers(1,i).Activate();
             end
             
-            obj.NeuralNetwork.OutputLayer = obj.NeuralNetwork.NeuralLayers(1, obj.NeuralNetwork.LayerCount-2).Activated * obj.NeuralNetwork.NeuralLayers(1, obj.NeuralNetwork.LayerCount-2).OutputWeights;
+            obj.NeuralNetwork.OutputLayer = OutputLayer(obj.NeuralNetwork.NeuralLayers(1, obj.NeuralNetwork.LayerCount-2).Activated * obj.NeuralNetwork.NeuralLayers(1, obj.NeuralNetwork.LayerCount-2).OutputWeights);
         end
         
         function obj = BackPropagation(obj)

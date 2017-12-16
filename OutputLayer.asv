@@ -9,7 +9,6 @@ classdef OutputLayer
     properties
         InputSum
         Activated
-        ActivatedPrime
     end
     
     methods
@@ -18,7 +17,7 @@ classdef OutputLayer
             %   It takes the input sum and activates this layer upon
             %   construction
             obj.InputSum = inputSum;
-            [obj.Activated, obj.ActivatedPrime] = Activate(obj.InputSum, "SIGMOID");
+            obj.Activated = Activate(obj);
         end
         
 %         function activated = Activate(obj)
