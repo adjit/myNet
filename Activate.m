@@ -6,7 +6,7 @@ function [activated,activatedPrime] = Activate(inputSum, activator)
     activated = [];
     activatedPrime = [];
 
-    if(activator == "SIGMOID")
+    if(activator == 'SIGMOID')
         [activated, activatedPrime] = arrayfun(@(x) Sigmoid(x), inputSum);
         %activatedPrime = arrayfun(@(x) SigmoidPrime(x), inputSum);
     %elseif(activator == "TANH")

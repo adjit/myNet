@@ -5,6 +5,7 @@ classdef InputLayer
     properties
         Input
         OutputWeights
+        NewWeights
     end
     
     methods

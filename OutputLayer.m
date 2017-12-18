@@ -18,7 +18,7 @@ classdef OutputLayer
             %   It takes the input sum and activates this layer upon
             %   construction
             obj.InputSum = inputSum;
-            [obj.Activated, obj.ActivatedPrime] = Activate(obj.InputSum, "SIGMOID");
+            [obj.Activated, obj.ActivatedPrime] = Activate(obj.InputSum, 'SIGMOID');
         end
         
 %         function activated = Activate(obj)

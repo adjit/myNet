@@ -16,11 +16,12 @@ classdef NeuralLayer
      methods
          function obj = NeuralLayer(inputSum, numOutputNeurons)
              obj.InputSum = inputSum;
-             [obj.Activated, obj.ActivatedPrime] = Activate(obj.InputSum, "SIGMOID");
+             [obj.Activated, obj.ActivatedPrime] = Activate(obj.InputSum, 'SIGMOID');
              obj.OutputWeights = rand(size(obj.InputSum, 2), numOutputNeurons);
          end
          
 %          function activated = Activate(obj)
+%           MOVED TO EXTERNAL FUNCTION
 %              activated = arrayfun(@(x) Sigmoid(x), obj.InputSum);
 %          end
      end
