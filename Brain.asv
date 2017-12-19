@@ -98,7 +98,7 @@ OLD TEST RUN
 	%Take transpose of Activated prime to get a 1x1 value
             dSum = obj.NeuralNetwork.OutputLayer.ActivatedPrime.*outputSME
             
-            dWeight = obj.NeuralNetwork.NeuralLayers(1, neuralIndex).Activated.'*dSum
+            dWeight = dSum./obj.NeuralNetwork.NeuralLayers(1, neuralIndex).Activated
             
             obj.NeuralNetwork.NeuralLayers(1, neuralIndex).NewWeights = obj.NeuralNetwork.NeuralLayers(1, neuralIndex).OutputWeights + dWeight;
             
@@ -106,15 +106,15 @@ OLD TEST RUN
             while(neuralIndex > 0)
                 neuralLayer = obj.NeuralNetwork.NeuralLayers(1, neuralIndex);
                 
-                dSum = ( dSum*neuralLayer.OutputWeights.' ).*neuralLayer.ActivatedPrime
+                dSum = ( dSum./neuralLayer.OutputWeights).*neuralLayer.ActivatedPrime;
                 
                 if(neuralIndex - 1 == 0)
-                    dWeight = obj.NeuralNetwork.InputLayer.Input.'*dSum;
+                    dWeight = dSum./obj.NeuralNetwork.InputLayer.Input;
                     %for base case need to still move the NewWeight to the
                     %OutputWeight
                     obj.NeuralNetwork.InputLayer.NewWeights = obj.NeuralNetwork.InputLayer.OutputWeights + dWeight;
                 else
-                    dWeight = obj.NeuralNetwork.NeuralLayers(1, neuralIndex-1).Activated.'*dSum
+                    dWeight = dSum./obj.NeuralNetwork.NeuralLayers(1, neuralIndex-1).Activated;
                     obj.NeuralNetwork.NeuralLayers(1, neuralIndex-1).NewWeights = obj.NeuralNetwork.NeuralLayers(1, neuralIndex-1).OutputWeights + dWeight;
                 end
                 
