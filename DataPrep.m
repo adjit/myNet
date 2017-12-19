@@ -6,6 +6,8 @@
     inputSet = GetRawTestData(importData);
     [neuronInput, neuronResult] = getNeuronInput(inputSet(5,:));
     
+    [normalizedInputSesst, inputMin, inputMax] = zeroOneNormalize(inputSet(5, :));
+    [normalizedNeuronInput, normalizedNeuronResult] = getNeuronInput(normalizedInputSet);
     
 %end
 
